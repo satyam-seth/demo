@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+</head>
+<body>
+    <form action="{% url 'emp' %}" method="POST">
+        {% csrf_token %}
+        {{emp_form}}
+        <input type="submit" value="Submit">
+    </form>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>ORGANIZATION</th>
+            <th>REGISTERED ON</th>
+            <th>LAST MODIFIED</th>
+        </tr>
+        {% for emp in emps %}
+            <tr>
+                <td>{{emp.id}}</td>
+                <td>{{emp.name}}</td>
+                <td>{{emp.org}}</td>
+                <td>{{emp.registered_on}}</td>
+                <td>{{emp.last_modified}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

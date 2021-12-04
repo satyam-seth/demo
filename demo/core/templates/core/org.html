@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations</title>
+</head>
+<body>
+    <form action="{% url 'org' %}" method="POST">
+        {% csrf_token %}
+        {{org_form}}
+        <input type="submit" value="Submit">
+    </form>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>REGISTERED ON</th>
+            <th>LAST MODIFIED</th>
+        </tr>
+        {% for org in orgs %}
+            <tr>
+                <td>{{org.id}}</td>
+                <td>{{org.name}}</td>
+                <td>{{org.registered_on}}</td>
+                <td>{{org.last_modified}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
