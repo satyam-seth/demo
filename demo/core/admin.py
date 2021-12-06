@@ -8,5 +8,5 @@ class OrgAdmin(admin.ModelAdmin):
     list_display=['id','name','registered_on','last_modified']
 
 @admin.register(Emp)
-class OrgAdmin(admin.ModelAdmin):
+class EmpAdmin(admin.ModelAdmin):
     list_display=['id','name','org','registered_on','last_modified']

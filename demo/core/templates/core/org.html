@@ -9,24 +9,35 @@
 <body>
     <form action="{% url 'org' %}" method="POST">
         {% csrf_token %}
-        {{org_form}}
-        <input type="submit" value="Submit">
+        <fieldset>
+            <legend>Register New Organization</legend>
+            {{org_form}}
+            <input type="submit" value="Submit">
+        </fieldset>
     </form>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>REGISTERED ON</th>
-            <th>LAST MODIFIED</th>
-        </tr>
-        {% for org in orgs %}
+    <hr>
+    <a href="{% url 'emp' %}">See All Employees Rercords</a>
+    <hr>
+    {% if orgs %}
+        <h2><u>All Organizations Details</u></h2>
+        <table border="1">
             <tr>
-                <td>{{org.id}}</td>
-                <td>{{org.name}}</td>
-                <td>{{org.registered_on}}</td>
-                <td>{{org.last_modified}}</td>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTERED ON</th>
+                <th>LAST MODIFIED</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for org in orgs %}
+                <tr>
+                    <td>{{org.id}}</td>
+                    <td>{{org.name}}</td>
+                    <td>{{org.registered_on}}</td>
+                    <td>{{org.last_modified}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>Records Not Found</h1>
+    {% endif %}
 </body>
 </html>

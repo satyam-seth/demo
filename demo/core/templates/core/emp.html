@@ -9,26 +9,37 @@
 <body>
     <form action="{% url 'emp' %}" method="POST">
         {% csrf_token %}
-        {{emp_form}}
-        <input type="submit" value="Submit">
+        <fieldset>
+            <legend>Register New Employee</legend>
+            {{emp_form}}
+            <input type="submit" value="Submit">
+        </fieldset>
     </form>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>ORGANIZATION</th>
-            <th>REGISTERED ON</th>
-            <th>LAST MODIFIED</th>
-        </tr>
-        {% for emp in emps %}
+    <hr>
+    <a href="{% url 'org' %}">See All Organizations Rercords</a>
+    <hr>
+    {% if orgs %}
+        <h2><u>All Employees Details</u></h2>
+        <table border="1">
             <tr>
-                <td>{{emp.id}}</td>
-                <td>{{emp.name}}</td>
-                <td>{{emp.org}}</td>
-                <td>{{emp.registered_on}}</td>
-                <td>{{emp.last_modified}}</td>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>ORGANIZATION</th>
+                <th>REGISTERED ON</th>
+                <th>LAST MODIFIED</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for emp in emps %}
+                <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.org}}</td>
+                    <td>{{emp.registered_on}}</td>
+                    <td>{{emp.last_modified}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>Records Not Found</h1>
+    {% endif %}
 </body>
 </html>
